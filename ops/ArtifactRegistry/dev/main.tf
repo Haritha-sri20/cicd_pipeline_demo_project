@@ -8,9 +8,6 @@ terraform {
   }
 }
 
-provider "google" {
-  # Configuration options
-}
 terraform {
   backend "gcs" {
     bucket = "haritha-pipeline-bucket" # GCS bucket name to store terraform tfstate
