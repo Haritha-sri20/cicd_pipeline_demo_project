@@ -12,7 +12,7 @@ pipeline {
             when {
                 anyOf {
                     branch 'develop'
-                    branch 'main'
+                    branch 'test'
                 }
             }
             steps {
@@ -25,9 +25,9 @@ pipeline {
                             sh 'terraform --version'
                             sh 'terraform init'
                             sh 'terraform plan -out=output.tfplan'
-                            sh 'terraform apply -auto-approve'
+                            //sh 'terraform apply -auto-approve'
                         }
-                    } else if (env.BRANCH_NAME == 'main') {
+                    } else if (env.BRANCH_NAME == 'test') {
                         dir("ops/ArtifactRegistry/uat") {
                             sh 'terraform --version'
                             sh 'terraform init'
