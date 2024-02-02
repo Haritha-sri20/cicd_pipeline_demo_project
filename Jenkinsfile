@@ -59,9 +59,9 @@ pipeline {
                             sh 'docker images'
                             imageTag = "latest-${env.BUILD_NUMBER}" // or use a timestamp or commit hash
                             sh "docker build -t pythondemoimage:${imageTag} ."
-                            sh "docker tag pythondemoimage:${imageTag} asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
-                            sh "docker push asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
                             sh 'gcloud auth configure-docker asia-south1-docker.pkg.dev'
+                            sh "docker tag pythondemoimage:${imageTag} asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
+                            sh "docker push asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"    
                             sh 'docker images'
                         }
                     } else if (env.BRANCH_NAME == 'main') {
