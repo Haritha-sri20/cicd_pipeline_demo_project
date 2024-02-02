@@ -55,7 +55,7 @@ pipeline {
                         dir("ops/src/dev") {
                             sh 'echo running dev build docker image'
                             sh 'docker version'
-                            // sh 'docker rmi -f $(docker images -q)'
+                            sh 'docker rmi -f $(docker images -q)'
                             sh 'docker images'
                             imageTag = "latest-${env.BUILD_NUMBER}" // or use a timestamp or commit hash
                             sh "docker build -t pythondemoimage:${imageTag} ."

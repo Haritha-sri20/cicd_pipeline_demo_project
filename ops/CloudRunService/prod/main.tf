@@ -10,12 +10,12 @@ terraform {
 }
 terraform {
   backend "gcs" {
-    bucket = "anil-terraform-statefiles" # GCS bucket name to store terraform tfstate
-    prefix = "cicd-demo/prod/terraform.tfstate"               # Prefix name should be unique for each Terraform project having same remote state bucket.
+    bucket = "haritha-pipeline-bucket"          # GCS bucket name to store terraform tfstate
+    prefix = "cicd-demo/dev/ArtifactRegistry"   # Prefix name should be unique for each Terraform project having same remote state bucket.
   }
 }
 provider "google" {
-  project = "excellent-guide-410011"
+  project = "haritha-project1"
 }
 resource "google_cloud_run_v2_service" "default" {
   name     = var.name
@@ -24,7 +24,7 @@ resource "google_cloud_run_v2_service" "default" {
 
   template {
     containers {
-      image = "asia-south1-docker.pkg.dev/excellent-guide-410011/cicd-demo-prod-repository/pythondemoimage:latest"
+      image = "asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:latest"
       resources {
         limits = {
           cpu    = "4"

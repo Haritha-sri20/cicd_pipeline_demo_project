@@ -10,12 +10,12 @@ terraform {
 }
 terraform {
   backend "gcs" {
-    bucket = "anil-terraform-statefiles" # GCS bucket name to store terraform tfstate
-    prefix = "cicd-demo/uat/Kubernetes"               # Prefix name should be unique for each Terraform project having same remote state bucket.
+    bucket = "haritha-pipeline-bucket"          # GCS bucket name to store terraform tfstate
+    prefix = "cicd-demo/dev/ArtifactRegistry"   # Prefix name should be unique for each Terraform project having same remote state bucket.
   }
 }
 provider "google" {
-  project = "excellent-guide-410011"
+  project = "haritha-project1"
 }
 resource "google_service_account" "default" {
   account_id   = "service-account-id"
