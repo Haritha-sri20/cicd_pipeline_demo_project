@@ -60,7 +60,7 @@ pipeline {
                             imageTag = "latest-${env.BUILD_NUMBER}" // or use a timestamp or commit hash
                             sh "docker build -t pythondemoimage:${imageTag} ."
                             sh "docker tag pythondemoimage:${imageTag} asia-south1-docker.pkg.dev/haritha-project1/anil-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
-                            sh "docker push asia-south1-docker.pkg.dev/excellent-guide-410011/anil-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
+                            sh "docker push asia-south1-docker.pkg.dev/haritha-project1/anil-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
                             sh 'gcloud auth configure-docker asia-south1-docker.pkg.dev'
                             sh 'docker images'
                         }
