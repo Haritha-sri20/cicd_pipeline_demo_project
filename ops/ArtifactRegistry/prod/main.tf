@@ -10,12 +10,12 @@ terraform {
 }
 terraform {
   backend "gcs" {
-    bucket = "anil-terraform-statefiles" # GCS bucket name to store terraform tfstate
+    bucket ="haritha-pipeline-bucket" # GCS bucket name to store terraform tfstate
     prefix = "cicd-demo/prod/terraform.tfstate"               # Prefix name should be unique for each Terraform project having same remote state bucket.
   }
 }
 provider "google" {
-  project = "excellent-guide-410011"
+  project = "haritha-project1"
 }
 resource "google_artifact_registry_repository" "my-repo" {
   location      = var.location
