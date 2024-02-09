@@ -55,14 +55,14 @@ pipeline {
                         dir("ops/src/dev") {
                             sh 'echo running dev build docker image'
                             sh 'docker version'
-                            sh 'docker rmi -f $(docker images -q)'
-                            sh 'docker images'
-                            imageTag = "latest-${env.BUILD_NUMBER}" // or use a timestamp or commit hash
-                            sh "docker build -t pythondemoimage:${imageTag} ."
-                            sh 'gcloud auth configure-docker asia-south1-docker.pkg.dev'
-                            sh "docker tag pythondemoimage:${imageTag} asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
-                            sh "docker push asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"    
-                            sh 'docker images'
+                            //sh 'docker rmi -f $(docker images -q)'
+                            //sh 'docker images'
+                            //imageTag = "latest-${env.BUILD_NUMBER}" // or use a timestamp or commit hash
+                            //sh "docker build -t pythondemoimage:${imageTag} ."
+                            //sh 'gcloud auth configure-docker asia-south1-docker.pkg.dev'
+                            //sh "docker tag pythondemoimage:${imageTag} asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
+                            //sh "docker push asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"    
+                            //sh 'docker images'
                         }
                     } else if (env.BRANCH_NAME == 'main') {
                         dir("ops/src/uat") {
@@ -81,7 +81,7 @@ pipeline {
             }
         }
 
-        /*stage('Non Prod service Creation and deployment') {
+        stage('Non Prod service Creation and deployment') {
             when {
                 anyOf {
                     branch 'develop'
@@ -95,24 +95,24 @@ pipeline {
 
                     if (env.BRANCH_NAME == 'develop') {
                         dir("ops/CloudRunService/dev") {
-                            sh "sed -i 's|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:\${imageTag}|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}|' main.tf"
-                            sh 'terraform --version'
-                            sh 'terraform init'
-                            sh 'terraform plan -out=output.tfplan'
-                            sh 'terraform apply -auto-approve'
+                            //sh "sed -i 's|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:\${imageTag}|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}|' main.tf"
+                            //sh 'terraform --version'
+                            //sh 'terraform init'
+                            //sh 'terraform plan -out=output.tfplan'
+                            //sh 'terraform apply -auto-approve'
                         }
                         dir("ops/Kubernetes/dev") {
-                            sh 'terraform --version'
-                            sh 'terraform init'
-                            sh 'terraform plan -out=output.tfplan'
-                            sh 'terraform apply -auto-approve'
+                            // sh 'terraform --version'
+                            // sh 'terraform init'
+                            // sh 'terraform plan -out=output.tfplan'
+                            // sh 'terraform apply -auto-approve'
 
-                            sh 'gcloud config set project excellent-guide-410011'
-                            sh 'kubectl config view'
-                            sh 'gcloud container clusters get-credentials haritha-demo-gke-cluster --region asia-south1 --project haritha-project1'
-                            sh "sed -i 's|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:\${imageTag}|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}|' deployment.yml"
-                            sh 'kubectl apply -f deployment.yml'
-                            sh 'kubectl apply -f service.yml'
+                            // sh 'gcloud config set project haritha-project1'
+                            // sh 'kubectl config view'
+                            // sh 'gcloud container clusters get-credentials haritha-demo-gke-cluster --region asia-south1 --project haritha-project1'
+                            // sh "sed -i 's|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:\${imageTag}|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}|' deployment.yml"
+                            // sh 'kubectl apply -f deployment.yml'
+                            // sh 'kubectl apply -f service.yml'
                         }
                     } else if (env.BRANCH_NAME == 'main') {
                         dir("ops/CloudRunService/uat") {
@@ -124,7 +124,7 @@ pipeline {
                     }
                 }
             }
-        }*/
+        }
 
         stage('Production Infra : Creation') {
             when {
