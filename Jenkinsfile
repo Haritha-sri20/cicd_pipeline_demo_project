@@ -103,17 +103,17 @@ pipeline {
                             sh 'terraform apply -auto-approve'
                         }
                         dir("ops/Kubernetes/dev") {
-                            // sh 'terraform --version'
-                            // sh 'terraform init'
-                            // sh 'terraform plan -out=output.tfplan'
-                            // sh 'terraform apply -auto-approve'
+                            sh 'terraform --version'
+                            sh 'terraform init'
+                            sh 'terraform plan -out=output.tfplan'
+                            sh 'terraform apply -auto-approve'
 
-                            // sh 'gcloud config set project haritha-project1'
-                            // sh 'kubectl config view'
-                            // sh 'gcloud container clusters get-credentials haritha-demo-gke-cluster --region asia-south1 --project haritha-project1'
-                            // sh "sed -i 's|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:\${imageTag}|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}|' deployment.yml"
-                            // sh 'kubectl apply -f deployment.yml'
-                            // sh 'kubectl apply -f service.yml'
+                            sh 'gcloud config set project haritha-project1'
+                            sh 'kubectl config view'
+                            sh 'gcloud container clusters get-credentials haritha-demo-gke-cluster --region asia-south1 --project haritha-project1'
+                            sh "sed -i 's|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:\${imageTag}|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}|' deployment.yml"
+                            sh 'kubectl apply -f deployment.yml'
+                            sh 'kubectl apply -f service.yml'
                         }
                     } else if (env.BRANCH_NAME == 'main') {
                         dir("ops/CloudRunService/uat") {
