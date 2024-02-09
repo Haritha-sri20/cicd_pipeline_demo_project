@@ -57,13 +57,13 @@ pipeline {
                             sh 'echo running dev build docker image'
                             sh 'docker version'
                             //sh 'docker rmi -f $(docker images -q)'
-                            //sh 'docker images'
-                            //imageTag = "latest-${env.BUILD_NUMBER}" // or use a timestamp or commit hash
-                            //sh "docker build -t pythondemoimage:${imageTag} ."
-                            //sh 'gcloud auth configure-docker asia-south1-docker.pkg.dev'
-                            //sh "docker tag pythondemoimage:${imageTag} asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
-                            //sh "docker push asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"    
-                            //sh 'docker images'
+                            sh 'docker images'
+                            imageTag = "latest-${env.BUILD_NUMBER}" // or use a timestamp or commit hash
+                            sh "docker build -t pythondemoimage:${imageTag} ."
+                            sh 'gcloud auth configure-docker asia-south1-docker.pkg.dev'
+                            sh "docker tag pythondemoimage:${imageTag} asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
+                            sh "docker push asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"    
+                            sh 'docker images'
                         }
                     } else if (env.BRANCH_NAME == 'main') {
                         dir("ops/src/uat") {
@@ -73,7 +73,7 @@ pipeline {
                             imageTag = "latest-${env.BUILD_NUMBER}" // or use a timestamp or commit hash
                             sh "docker build -t pythondemoimage:${imageTag} ."
                             sh "docker tag pythondemoimage:${imageTag} asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
-                            sh "docker push asia-south1-docker.pkg.dev/excellent-guide-410011/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
+                            sh "docker push asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}"
                             sh 'gcloud auth configure-docker asia-south1-docker.pkg.dev'
                             sh 'docker images'
                         }
@@ -96,11 +96,11 @@ pipeline {
 
                     if (env.BRANCH_NAME == 'develop') {
                         dir("ops/CloudRunService/dev") {
-                            //sh "sed -i 's|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:\${imageTag}|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}|' main.tf"
-                            //sh 'terraform --version'
-                            //sh 'terraform init'
-                            //sh 'terraform plan -out=output.tfplan'
-                            //sh 'terraform apply -auto-approve'
+                            sh "sed -i 's|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:\${imageTag}|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}|' main.tf"
+                            sh 'terraform --version'
+                            sh 'terraform init'
+                            sh 'terraform plan -out=output.tfplan'
+                            sh 'terraform apply -auto-approve'
                         }
                         dir("ops/Kubernetes/dev") {
                             // sh 'terraform --version'
