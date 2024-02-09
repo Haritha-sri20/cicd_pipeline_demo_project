@@ -104,7 +104,7 @@ pipeline {
                         }
                         dir("ops/Kubernetes/dev") {
                             sh 'terraform --version'
-                            sh 'terraform init'
+                            sh 'terraform init -migrate-state -force-copy'
                             sh 'terraform plan -out=output.tfplan'
                             sh 'terraform apply -auto-approve'
 

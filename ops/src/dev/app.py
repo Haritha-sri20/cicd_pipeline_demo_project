@@ -11,7 +11,7 @@ def hello_world():
     <marquee direction="left" behavior="scroll" scrollamount="5" style="color: green; font-size: x-large;">
         Good news guys
     </marquee>
-    <img src="softility_inc_cover.jpg" alt="Sample Image" width="1600" height="500">'''
+    <img src="softility_inc_cover.jpg" alt="Sample Image" width="1200" height="500">'''
     
     response = make_response(html_content)
     
