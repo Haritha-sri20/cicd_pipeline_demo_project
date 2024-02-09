@@ -24,7 +24,7 @@ pipeline {
                         dir("ops/ArtifactRegistry/dev") {
                             sh 'terraform --version'
                             sh 'terraform init -migrate-state -force-copy'
-                            sh 'terraform init -reconfigure -auto-approve'
+                            // sh 'terraform init -reconfigure -auto-approve'
                             sh 'terraform plan -out=output.tfplan'
                             sh 'terraform apply -auto-approve'
                         }
