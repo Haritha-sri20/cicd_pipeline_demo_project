@@ -23,8 +23,8 @@ pipeline {
                     if (env.BRANCH_NAME == 'develop') {
                         dir("ops/ArtifactRegistry/dev") {
                             sh 'terraform --version'
-                            sh 'terraform init -migrate-state'
-                            sh 'terraform init -reconfigure'
+                            sh 'terraform init -migrate-state -auto-approve'
+                            sh 'terraform init -reconfigure -auto-approve'
                             sh 'terraform plan -out=output.tfplan'
                             sh 'terraform apply -auto-approve'
                         }
