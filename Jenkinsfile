@@ -98,7 +98,7 @@ pipeline {
                         dir("ops/CloudRunService/dev") {
                             sh "sed -i 's|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:\${imageTag}|asia-south1-docker.pkg.dev/haritha-project1/haritha-cicd-demo-dev-repo/pythondemoimage:${imageTag}|' main.tf"
                             sh 'terraform --version'
-                            sh 'terraform init'
+                            sh 'terraform init -migrate-state -force-copy'
                             sh 'terraform plan -out=output.tfplan'
                             sh 'terraform apply -auto-approve'
                         }
