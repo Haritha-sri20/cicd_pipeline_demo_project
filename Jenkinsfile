@@ -81,7 +81,7 @@ pipeline {
             }
         }
 
-        stage('Non Prod service Creation and deployment') {
+        /*stage('Non Prod service Creation and deployment') {
             when {
                 anyOf {
                     branch 'develop'
@@ -124,7 +124,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
 
         stage('Production Infra : Creation') {
             when {
