@@ -158,7 +158,7 @@ pipeline {
                             sh 'terraform init'
                             sh 'terraform plan -out=output.tfplan'
                             sh 'terraform apply -auto-approve'
-                        }
+                        }x
                     }
                 }
             }
